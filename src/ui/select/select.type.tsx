@@ -1,4 +1,7 @@
-import { ViewProps as RNViewProps } from 'react-native';
+import {
+  ViewProps as RNViewProps,
+  PressableProps as RNButtonProps,
+} from 'react-native';
 import {
   BackgroundPropsType,
   DimensionPropsType,
@@ -9,6 +12,11 @@ import {
   RoundedPropsType,
   ShadowPropsType,
   VariantPropsType,
+  ButtonPropsType,
+  DisabledPropsType,
+  LoadingPropsType,
+  PrefixSuffixPropsType,
+  TextPropsType,
 } from '../../types';
 import { SelectOption } from './select.option.component';
 
@@ -53,4 +61,26 @@ export interface SelectProps
   renderNoResultsView?: (searchTerm: string) => React.ReactElement;
   renderSubmitButton?: () => React.ReactElement;
   renderSearchInput?: (props: { clearText: () => void }) => React.ReactElement;
+}
+
+export interface SelectOptionProps
+  extends RNButtonProps,
+    BorderPropsType,
+    SpacingPropsType,
+    ShadowPropsType,
+    RoundedPropsType,
+    LoadingPropsType,
+    PositionPropsType,
+    DisabledPropsType,
+    FlexPropsType,
+    ButtonPropsType,
+    Pick<PrefixSuffixPropsType, 'prefix'>,
+    Pick<BackgroundPropsType, 'bg'>,
+    DimensionPropsType,
+    Pick<TextPropsType, 'color' | 'fontSize'>,
+    VariantPropsType {
+  center?: boolean;
+  value: any;
+  onSelect?: (value: any) => void;
+  selectedValue?: any;
 }

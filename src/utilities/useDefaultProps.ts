@@ -18,8 +18,10 @@ export const useDefaultProps = <Props extends object>(
     }
 
     let propsFromTheme = {
+      // @ts-ignore
       ...(theme.components?.[componentName] ?? {}),
       ...(props.variant &&
+        // @ts-ignore
         (theme.components?.[componentName]?.variants?.[props.variant] ?? {})),
     };
 
@@ -32,6 +34,7 @@ export const useDefaultProps = <Props extends object>(
     };
 
     return mergedProps;
+    // @ts-ignore
   }, [componentName, defaultProps, props, theme.components]);
 
   return finalProps as Props & Required<typeof defaultProps>;

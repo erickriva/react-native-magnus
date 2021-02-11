@@ -1,4 +1,5 @@
 import { ImageSourcePropType as RNImageSourcePropType } from 'react-native';
+import { FinalTheme } from './theme/type';
 
 type Undefined<T> = { [P in keyof T]: P extends undefined ? T[P] : never };
 
@@ -34,6 +35,8 @@ export type DefaultProps<Props extends object> = {
   [K in keyof Props]?: Props[K];
 };
 
+type LiteralUnion<T extends U, U = string> = T | (U & {});
+
 export const borderProps = [
   'borderColor',
   'borderTopColor',
@@ -50,11 +53,11 @@ export const borderProps = [
   'borderStyle',
 ] as const;
 export interface BorderPropsType {
-  borderColor?: string;
-  borderTopColor?: string;
-  borderRightColor?: string;
-  borderBottomColor?: string;
-  borderLeftColor?: string;
+  borderColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderTopColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderRightColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderBottomColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderLeftColor?: LiteralUnion<keyof FinalTheme['colors']>;
   borderWidth?: number;
   borderTopWidth?: number;
   borderRightWidth?: number;
@@ -128,7 +131,7 @@ export interface RoundedPropsType {
 export const shadowProps = ['shadow', 'shadowColor'] as const;
 export interface ShadowPropsType {
   shadow?: string | number;
-  shadowColor?: string;
+  shadowColor?: LiteralUnion<keyof FinalTheme['colors']>;
 }
 
 export const dimensionProps = [
@@ -196,7 +199,7 @@ export interface PositionPropsType {
 
 export const backgroundProps = ['bg', 'bgImg', 'bgMode'] as const;
 export interface BackgroundPropsType {
-  bg?: string;
+  bg?: LiteralUnion<keyof FinalTheme['colors']>;
   bgImg?: RNImageSourcePropType;
   bgMode?: 'contain' | 'cover' | 'stretch' | 'repeat';
 }
@@ -217,7 +220,7 @@ export const textProps = [
   'textAlignVertical',
 ] as const;
 export interface TextPropsType {
-  color?: string;
+  color?: LiteralUnion<keyof FinalTheme['colors']>;
   fontSize?: string | number;
   textDecorLine?:
     | 'none'
@@ -226,7 +229,7 @@ export interface TextPropsType {
     | 'underline line-through';
   textDecorStyle?: 'solid' | 'double' | 'dotted' | 'dashed';
   fontStyle?: 'normal' | 'italic';
-  textDecorColor?: string;
+  textDecorColor?: LiteralUnion<keyof FinalTheme['colors']>;
   fontWeight?:
     | 'normal'
     | 'bold'
@@ -251,7 +254,7 @@ export interface TextPropsType {
     | 'line-through'
     | 'underline line-through';
   textDecorationStyle?: 'solid' | 'double' | 'dotted' | 'dashed';
-  textDecorationColor?: string;
+  textDecorationColor?: LiteralUnion<keyof FinalTheme['colors']>;
   textShadowColor?: string;
   textShadowOffset?: { width: number; height: number };
   textShadowRadius?: number;
@@ -276,7 +279,7 @@ export const loadingProps = ['loading', 'loaderSize', 'loaderColor'] as const;
 export interface LoadingPropsType {
   loading?: boolean;
   loaderSize?: number | string;
-  loaderColor?: string;
+  loaderColor?: LiteralUnion<keyof FinalTheme['colors']>;
 }
 
 export const preffixSuffixProps = ['preffix', 'suffix'] as const;
@@ -287,7 +290,7 @@ export interface PrefixSuffixPropsType {
 
 export const inputProps = ['focusBorderColor'] as const;
 export interface InputPropsType {
-  focusBorderColor?: string;
+  focusBorderColor?: LiteralUnion<keyof FinalTheme['colors']>;
 }
 
 export const disabledProps = ['disabled'] as const;
@@ -303,16 +306,16 @@ export const buttonProps = [
   'ripple',
 ] as const;
 export interface ButtonPropsType {
-  underlayColor?: string;
+  underlayColor?: LiteralUnion<keyof FinalTheme['colors']>;
   block?: boolean;
   borderless?: boolean;
-  rippleColor?: string;
+  rippleColor?: LiteralUnion<keyof FinalTheme['colors']>;
   ripple?: boolean;
 }
 
 export const overlayProps = ['overlayColor', 'overlayOpacity'] as const;
 export interface OverlayPropsType {
-  overlayColor?: string;
+  overlayColor?: LiteralUnion<keyof FinalTheme['colors']>;
   overlayOpacity?: number;
 }
 

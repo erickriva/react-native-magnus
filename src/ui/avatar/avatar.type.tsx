@@ -16,6 +16,8 @@ import {
   TextPropsType,
   ZIndexPropsType,
   VariantPropsType,
+  OverflowPropsType,
+  DimensionPropsType,
 } from '../../types';
 
 export type CompoundedAvatar<P> = React.FunctionComponent<P> & {
@@ -37,4 +39,20 @@ export interface AvatarProps
     VariantPropsType {
   size?: number;
   source?: RNImageSourcePropType;
+}
+
+export interface AvatarGroupProps
+  extends BorderPropsType,
+    SpacingPropsType,
+    RoundedPropsType,
+    ShadowPropsType,
+    DimensionPropsType,
+    BackgroundPropsType,
+    FlexPropsType,
+    PositionPropsType,
+    OverflowPropsType,
+    OpacityPropsType,
+    ZIndexPropsType {
+  offset?: string | number;
+  children: React.ReactElement[] | React.ReactElement;
 }

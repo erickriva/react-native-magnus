@@ -4,7 +4,7 @@ import { GestureResponderEvent as RNGestureResponderEvent } from 'react-native';
 import { Div } from '../div/div.component';
 import { Icon } from '../icon/icon.component';
 import { Text } from '../text/text.component';
-import { SelectOptionProps } from './select.option.type';
+import { SelectOptionProps } from './select.type';
 import { Button } from '../button/button.component';
 import { useDefaultProps } from '../../utilities/useDefaultProps';
 

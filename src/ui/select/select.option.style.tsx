@@ -7,7 +7,7 @@ import {
   createBorderRadiusStyles,
   getThemeColor,
 } from '../../theme/theme.service';
-import { SelectOptionProps } from './select.option.type';
+import { SelectOptionProps } from './select.type';
 
 /**
  * computed style

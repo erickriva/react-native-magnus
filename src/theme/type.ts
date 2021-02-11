@@ -28,19 +28,26 @@ import {
   TooltipProps,
   CarouselProps,
   AnimatedProps,
-} from '../ui';
-
-import { AvatarGroupProps } from '../ui/avatar/avatar.group.type';
-import {
+  AvatarGroupProps,
   CollapseBodyProps,
   CollapseGroupProps,
   CollapseHeaderProps,
-} from '../ui/collapse/collapse.type';
-import { DropdownOptionProps } from '../ui/dropdown/dropdown.option.type';
-import { CheckboxGroupProps } from '../ui/checkbox/checkbox.type';
-import { RadioGroupProps } from '../ui/radio/radio.type';
-import { SelectOptionProps } from '../ui/select/select.option.type';
+  DropdownOptionProps,
+  CheckboxGroupProps,
+  RadioGroupProps,
+  SelectOptionProps,
+} from '../ui';
+
 import { ThemeProps, VariantType } from '../types';
+import { defaultTheme } from '../style';
+
+/**
+ * Can be augmented by users to inject their exact theme into Magnus types.
+ * @see TODO LINK TO THE DOCS
+ */
+export interface UserTheme {}
+export type DefaultTheme = typeof defaultTheme;
+export type FinalTheme = DefaultTheme & UserTheme;
 
 export interface ThemeType {
   components?: {

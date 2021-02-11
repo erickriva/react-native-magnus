@@ -5,12 +5,12 @@ import { ThemeType } from './type';
 
 export interface ThemeContextType {
   theme: ThemeType;
-  setTheme: (theme: ThemeType) => void;
+  setTheme: <T extends ThemeType>(theme: T) => void;
 }
 
 export const ThemeContext: React.Context<ThemeContextType> = React.createContext(
   {
-    theme: defaultTheme,
+    theme: defaultTheme as ThemeType,
     setTheme: (_theme: ThemeType) => {},
   }
 );

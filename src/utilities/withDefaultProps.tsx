@@ -26,6 +26,7 @@ export function withDefaultProps<
       }
 
       let propsFromTheme = {
+        // @ts-ignore
         ...(theme.components?.[componentName] ?? {}),
         ...(this.props.variant &&
           //@ts-ignore

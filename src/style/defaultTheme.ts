@@ -1,6 +1,6 @@
-import { ThemeType } from '../theme';
+import { makeTheme } from '../theme';
 
-export const defaultTheme: ThemeType = {
+export const defaultTheme = makeTheme({
   name: 'default',
 
   colors: {
@@ -216,4 +216,4 @@ export const defaultTheme: ThemeType = {
     '-2xl': -32,
     '-3xl': -64,
   },
-};
+});

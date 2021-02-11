@@ -1,7 +1,8 @@
 export { Animated } from './animated/animated.component';
 export { AnimatedProps } from './animated/animated.type';
 export { Avatar } from './avatar/avatar.component';
-export { AvatarProps } from './avatar/avatar.type';
+export { AvatarGroup } from './avatar/avatar.group.component';
+export { AvatarProps, AvatarGroupProps } from './avatar/avatar.type';
 export { Badge } from './badge/badge.component';
 export { BadgeProps } from './badge/badge.type';
 export { Button } from './button/button.component';
@@ -9,9 +10,18 @@ export { ButtonProps } from './button/button.type';
 export { Carousel } from './carousel/carousel.component';
 export { CarouselProps } from './carousel/carousel.type';
 export { Checkbox } from './checkbox/checkbox.component';
-export { CheckboxProps } from './checkbox/checkbox.type';
+export { CheckboxProps, CheckboxGroupProps } from './checkbox/checkbox.type';
+export { CheckboxGroup } from './checkbox/group.component';
 export { Collapse } from './collapse/collapse.component';
 export { CollapseProps } from './collapse/collapse.type';
+export { CollapseBody } from './collapse/collapse.body.component';
+export { CollapseHeader } from './collapse/collapse.header.component';
+export { CollapseGroup } from './collapse/group.component';
+export {
+  CollapseBodyProps,
+  CollapseGroupProps,
+  CollapseHeaderProps,
+} from './collapse/collapse.type';
 export { Div } from './div/div.component';
 export { DivProps } from './div/div.type';
 export { Div as Box } from './div/div.component';
@@ -19,7 +29,12 @@ export { DivProps as BoxProps } from './div/div.type';
 export { Drawer } from './drawer/drawer.component';
 export { DrawerRef, DrawerProps } from './drawer/drawer.type';
 export { Dropdown } from './dropdown/dropdown.component';
-export { DropdownRef, DropdownProps } from './dropdown/dropdown.type';
+export {
+  DropdownRef,
+  DropdownProps,
+  DropdownOptionProps,
+} from './dropdown/dropdown.type';
+export { DropdownOption } from './dropdown/dropdown.option.component';
 export { Fab } from './fab/fab.component';
 export { FabProps } from './fab/fab.type';
 export { Header } from './header/header.component';
@@ -37,11 +52,17 @@ export { ModalRef, ModalProps } from './modal/modal.type';
 export { Overlay } from './overlay/overlay.component';
 export { OverlayRef, OverlayProps } from './overlay/overlay.type';
 export { Radio } from './radio/radio.component';
-export { RadioProps } from './radio/radio.type';
+export { RadioProps, RadioGroupProps } from './radio/radio.type';
+export { RadioGroup } from './radio/group.component';
 export { ScrollDiv } from './scrolldiv/scrolldiv.component';
 export { ScrollDivProps } from './scrolldiv/scrolldiv.type';
 export { Select } from './select/select.component';
-export { SelectRef, SelectProps } from './select/select.type';
+export {
+  SelectRef,
+  SelectProps,
+  SelectOptionProps,
+} from './select/select.type';
+export { SelectOption } from './select/select.option.component';
 export { Skeleton } from './skeleton/skeleton.component';
 export { SkeletonProps } from './skeleton/skeleton.type';
 export { Snackbar } from './snackbar/snackbar.component';

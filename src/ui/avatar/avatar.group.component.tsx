@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Div } from '../div/div.component';
-import { AvatarGroupProps } from './avatar.group.type';
+import { AvatarGroupProps } from './avatar.type';
 import { getThemeProperty, useTheme } from '../../theme';
 import { useDefaultProps } from '../../utilities/useDefaultProps';
 

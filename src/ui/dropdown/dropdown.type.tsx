@@ -1,5 +1,5 @@
 import { ModalProps } from '../modal/modal.type';
-
+import { ButtonProps } from '../button/button.type';
 import { DropdownOption } from './dropdown.option.component';
 import {
   BorderPropsType,
@@ -39,4 +39,9 @@ export interface DropdownProps
     VariantPropsType {
   title?: string | React.ReactNode;
   showSwipeIndicator?: boolean;
+}
+
+export interface DropdownOptionProps extends ButtonProps {
+  value: any;
+  onSelect?: (value: any) => void;
 }
