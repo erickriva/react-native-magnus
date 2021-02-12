@@ -72,7 +72,7 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
       ...rest
     } = props;
     const { theme } = useTheme();
-    const computedStyle = getStyle(theme, props as DropdownProps);
+    const computedStyle = getStyle(theme.props, props as DropdownProps);
     const [visible, setVisible] = useState(props.isVisible ?? false);
 
     useEffect(() => {
@@ -134,7 +134,7 @@ const Dropdown = React.forwardRef<DropdownRef, DropdownProps>(
           setVisible(false);
           onSwipeComplete && onSwipeComplete(params);
         }}
-        backdropColor={getThemeColor(theme.colors, backdropColor)}
+        backdropColor={getThemeColor(theme.props.colors, backdropColor)}
         onBackdropPress={
           'onBackdropPress' in props ? onBackdropPress : () => setVisible(false)
         }

@@ -92,7 +92,7 @@ const Tooltip = React.forwardRef<
   const animationStarted = visible === STATES.ANIMATING;
   const modalVisible = visible === STATES.SHOWN || animationStarted;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props, {
+  const computedStyle = getStyle(theme.props, props, {
     ...state,
     invert,
   });

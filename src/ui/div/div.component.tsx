@@ -80,7 +80,7 @@ const Div: React.FunctionComponent<DivProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props);
+  const computedStyle = getStyle(theme.props, props);
 
   // if there is a bgImage prop, use ImageBackground
   // instead of regular View component

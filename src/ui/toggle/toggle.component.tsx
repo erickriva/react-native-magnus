@@ -65,7 +65,7 @@ const Toggle: React.FC<ToggleProps> = (incomingProps) => {
   } = props;
   const [animXValue] = useState(new Animated.Value(on ? 1 : 0));
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props);
+  const computedStyle = getStyle(theme.props, props);
 
   const endPos = (w as number) - (h as number) + 3;
   const circlePosXEnd = endPos;
@@ -107,8 +107,8 @@ const Toggle: React.FC<ToggleProps> = (incomingProps) => {
             backgroundColor: animXValue.interpolate({
               inputRange: [0, 1],
               outputRange: [
-                getThemeColor(theme.colors, bg),
-                getThemeColor(theme.colors, activeBg),
+                getThemeColor(theme.props.colors, bg),
+                getThemeColor(theme.props.colors, activeBg),
               ],
             }),
           },
@@ -121,8 +121,8 @@ const Toggle: React.FC<ToggleProps> = (incomingProps) => {
               backgroundColor: animXValue.interpolate({
                 inputRange: [0, 1],
                 outputRange: [
-                  getThemeColor(theme.colors, circleBg),
-                  getThemeColor(theme.colors, activeCircleBg),
+                  getThemeColor(theme.props.colors, circleBg),
+                  getThemeColor(theme.props.colors, activeCircleBg),
                 ],
               }),
             },

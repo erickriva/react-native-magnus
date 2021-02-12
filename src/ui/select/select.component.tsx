@@ -54,7 +54,7 @@ const Select = React.forwardRef<SelectRef, SelectProps>(
       searchableProps,
     ]);
 
-    const computedStyle = getStyle(theme, props);
+    const computedStyle = getStyle(theme.props, props);
 
     const resolveMultiLevelAccess = (obj: any, key: string) => {
       return key.split('.').reduce((cur: any, keySection: string) => {

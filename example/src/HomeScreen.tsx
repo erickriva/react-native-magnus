@@ -15,7 +15,13 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 import { components, pages } from './items';
-import { darkTheme, lightTheme, saveThemeName } from './themes';
+import {
+  darkComponents,
+  darkTheme,
+  lightComponents,
+  lightTheme,
+  saveThemeName,
+} from './themes';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -46,14 +52,21 @@ const HomeScreen = () => {
                   <Toggle
                     h={25}
                     w={40}
-                    on={theme.name === 'dark'}
+                    on={theme.props.name === 'dark'}
                     onPress={() => {
                       saveThemeName(
-                        theme.name === 'dark'
+                        theme.props.name === 'dark'
                           ? lightTheme.name!
                           : darkTheme.name!
                       );
-                      setTheme(theme.name === 'dark' ? lightTheme : darkTheme);
+                      setTheme({
+                        props:
+                          theme.props.name === 'dark' ? lightTheme : darkTheme,
+                        components:
+                          theme.props.name === 'dark'
+                            ? lightComponents
+                            : darkComponents,
+                      });
                     }}
                   />
                 </Div>

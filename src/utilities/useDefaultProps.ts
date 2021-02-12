@@ -1,13 +1,16 @@
 import React from 'react';
-import { ThemeType, useTheme } from '../theme';
+import { ThemeComponents } from 'src/theme/type';
+import { useTheme } from '../theme';
 import { DefaultProps, VariantPropsType } from '../types';
 
 export const useDefaultProps = <Props extends object>(
-  componentName: keyof NonNullable<ThemeType['components']> | null,
+  componentName: keyof NonNullable<ThemeComponents> | null,
   props: Props & VariantPropsType,
   defaultProps: DefaultProps<Props>
 ) => {
-  const { theme } = useTheme();
+  const {
+    theme: { components },
+  } = useTheme();
 
   const finalProps = React.useMemo(() => {
     if (!componentName) {
@@ -19,10 +22,10 @@ export const useDefaultProps = <Props extends object>(
 
     let propsFromTheme = {
       // @ts-ignore
-      ...(theme.components?.[componentName] ?? {}),
+      ...(components?.[componentName] ?? {}),
       ...(props.variant &&
         // @ts-ignore
-        (theme.components?.[componentName]?.variants?.[props.variant] ?? {})),
+        (components?.[componentName]?.variants?.[props.variant] ?? {})),
     };
 
     delete propsFromTheme.variants;
@@ -35,7 +38,7 @@ export const useDefaultProps = <Props extends object>(
 
     return mergedProps;
     // @ts-ignore
-  }, [componentName, defaultProps, props, theme.components]);
+  }, [componentName, components, defaultProps, props]);
 
   return finalProps as Props & Required<typeof defaultProps>;
 };

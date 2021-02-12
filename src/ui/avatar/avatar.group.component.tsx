@@ -16,8 +16,8 @@ const AvatarGroup: React.FunctionComponent<AvatarGroupProps> = (
 
   const { children, ml, offset, ...rest } = props;
   const { theme } = useTheme();
-  const calculatedOffset = getThemeProperty(theme.spacing, offset);
-  const calculatedMarginLeft = getThemeProperty(theme.spacing, ml);
+  const calculatedOffset = getThemeProperty(theme.props.spacing, offset);
+  const calculatedMarginLeft = getThemeProperty(theme.props.spacing, ml);
 
   return (
     <Div {...rest} ml={calculatedOffset + calculatedMarginLeft}>

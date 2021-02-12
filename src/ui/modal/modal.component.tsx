@@ -54,7 +54,7 @@ const Modal = React.forwardRef<ModalRef, ModalProps>((incomingProps, ref) => {
   } = props;
   const [visible, setVisible] = useState(isVisible);
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props as ModalProps);
+  const computedStyle = getStyle(theme.props, props as ModalProps);
 
   useEffect(() => {
     if ('isVisible' in props) {

@@ -7,7 +7,13 @@ import { useFonts } from 'expo-font';
 
 import HomeScreen from './HomeScreen';
 import { components, pages } from './items';
-import { darkTheme, getThemeName, lightTheme } from './themes';
+import {
+  darkComponents,
+  darkTheme,
+  getThemeName,
+  lightComponents,
+  lightTheme,
+} from './themes';
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -31,7 +37,12 @@ const App = () => {
     return <AppLoading />;
   } else {
     return (
-      <ThemeProvider theme={themeName === 'dark' ? darkTheme : lightTheme}>
+      <ThemeProvider
+        theme={{
+          props: themeName === 'dark' ? darkTheme : lightTheme,
+          components: themeName === 'dark' ? darkComponents : lightComponents,
+        }}
+      >
         <NavigationContainer>
           <Stack.Navigator headerMode="none">
             <Stack.Screen name="Home" component={HomeScreen} />

@@ -38,7 +38,7 @@ const Drawer = React.forwardRef<DrawerRef, DrawerProps>(
       ...rest
     } = props;
     const { theme } = useTheme();
-    const computedStyle = getStyle(theme, props as DrawerProps);
+    const computedStyle = getStyle(theme.props, props as DrawerProps);
     const [visible, setVisible] = useState(isVisible);
 
     useEffect(() => {
@@ -64,7 +64,7 @@ const Drawer = React.forwardRef<DrawerRef, DrawerProps>(
         isVisible={visible}
         onSwipeComplete={() => setVisible(false)}
         swipeDirection={direction === 'left' ? 'left' : 'right'}
-        backdropColor={getThemeColor(theme.colors, backdropColor)}
+        backdropColor={getThemeColor(theme.props.colors, backdropColor)}
         animationInTiming={
           animationInTiming ? animationInTiming : animationTime
         }

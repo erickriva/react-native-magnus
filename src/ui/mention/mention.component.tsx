@@ -133,7 +133,7 @@ class MentionBase extends React.Component<
     return (
       <ThemeContext.Consumer>
         {({ theme }) => {
-          const computedStyle = getStyle(theme, this.props);
+          const computedStyle = getStyle(theme.props, this.props);
 
           return (
             <View style={{ flex: 1 }}>

@@ -1,3 +1,9 @@
-import { ThemeType } from './type';
+import deepmerge from 'deepmerge';
+import { ThemeComponents, ThemeType } from './type';
 
-export const makeTheme = <T extends ThemeType>(theme: T) => theme;
+export const mergeThemeComponents = (
+  components1: ThemeComponents,
+  components2: ThemeComponents
+): ThemeComponents => deepmerge<ThemeComponents>(components1, components2);
+
+export const makeTheme = <T extends ThemeType = ThemeType>(theme: T) => theme;

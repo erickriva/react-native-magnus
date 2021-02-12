@@ -1,33 +1,13 @@
 import { ImageSourcePropType as RNImageSourcePropType } from 'react-native';
 import { FinalTheme } from './theme/type';
 
-type Undefined<T> = { [P in keyof T]: P extends undefined ? T[P] : never };
-
-type FilterFlags<Base, Condition> = {
-  [Key in keyof Base]: Base[Key] extends Condition ? Key : never;
-};
-
-type AllowedNames<Base, Condition> = FilterFlags<Base, Condition>[keyof Base];
-
-type SubType<Base, Condition> = Pick<Base, AllowedNames<Base, Condition>>;
-
-export type OptionalKeys<T> = Exclude<
-  keyof T,
-  NonNullable<keyof SubType<Undefined<T>, never>>
->;
-
 export type ThemeProps<T> = {
   [name: string]: T;
 };
 
-type ComponentsProps<T> = Omit<
-  Pick<T, OptionalKeys<T>>,
-  'children' | 'variant'
->;
-
-export type VariantType<T> = ComponentsProps<T> & {
+export type VariantType<T> = Partial<T> & {
   variants?: {
-    [name: string]: ComponentsProps<T>;
+    [name: string]: Partial<T>;
   };
 };
 
@@ -87,22 +67,22 @@ export const spacingProps = [
   'ps',
 ] as const;
 export interface SpacingPropsType {
-  m?: string | number;
-  mt?: string | number;
-  mr?: string | number;
-  mb?: string | number;
-  ml?: string | number;
-  mx?: string | number;
-  my?: string | number;
-  ms?: string | number;
-  p?: string | number;
-  pt?: string | number;
-  pr?: string | number;
-  pb?: string | number;
-  pl?: string | number;
-  px?: string | number;
-  py?: string | number;
-  ps?: string | number;
+  m?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  mt?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  mr?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  mb?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  ml?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  mx?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  my?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  ms?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  p?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  pt?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  pr?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  pb?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  pl?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  px?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  py?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  ps?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
 }
 
 export const roundedProps = [
@@ -117,20 +97,38 @@ export const roundedProps = [
   'roundedBottom',
 ] as const;
 export interface RoundedPropsType {
-  rounded?: string | number;
-  roundedTopLeft?: string | number;
-  roundedTopRight?: string | number;
-  roundedBottomLeft?: string | number;
-  roundedBottomRight?: string | number;
-  roundedTop?: string | number;
-  roundedLeft?: string | number;
-  roundedRight?: string | number;
-  roundedBottom?: string | number;
+  rounded?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
+  roundedTopLeft?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedTopRight?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedBottomLeft?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedBottomRight?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedTop?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
+  roundedLeft?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
+  roundedRight?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedBottom?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
 }
 
 export const shadowProps = ['shadow', 'shadowColor'] as const;
 export interface ShadowPropsType {
-  shadow?: string | number;
+  shadow?: LiteralUnion<keyof FinalTheme['shadow'], string | number>;
   shadowColor?: LiteralUnion<keyof FinalTheme['colors']>;
 }
 
@@ -221,7 +219,7 @@ export const textProps = [
 ] as const;
 export interface TextPropsType {
   color?: LiteralUnion<keyof FinalTheme['colors']>;
-  fontSize?: string | number;
+  fontSize?: LiteralUnion<keyof FinalTheme['fontSize'], string | number>;
   textDecorLine?:
     | 'none'
     | 'underline'
@@ -255,7 +253,7 @@ export interface TextPropsType {
     | 'underline line-through';
   textDecorationStyle?: 'solid' | 'double' | 'dotted' | 'dashed';
   textDecorationColor?: LiteralUnion<keyof FinalTheme['colors']>;
-  textShadowColor?: string;
+  textShadowColor?: LiteralUnion<keyof FinalTheme['colors']>;
   textShadowOffset?: { width: number; height: number };
   textShadowRadius?: number;
 }

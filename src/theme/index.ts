@@ -1,7 +1,13 @@
 export { withTheme } from './withTheme';
-export { ThemeContext } from './theme.context';
+export { ThemeContext, ThemeContextType } from './theme.context';
 export { ThemeProvider, ThemeProviderProps } from './theme.provider';
 export { getThemeProperty } from './theme.service';
-export { useTheme } from './theme.hook';
-export { ThemeType, UserTheme, FinalTheme } from './type';
-export { makeTheme } from './exact-theme';
+export { useMagnusTheme, useMagnusTheme as useTheme } from './theme.hook';
+export {
+  ThemeType,
+  MagnusTheme,
+  UserTheme,
+  FinalTheme,
+  ThemeComponents,
+} from './type';
+export * from './exact-theme';

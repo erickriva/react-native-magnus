@@ -1,5 +1,6 @@
 import React from 'react';
-import { ThemeContext, ThemeType } from '../theme';
+import { ThemeComponents } from 'src/theme/type';
+import { ThemeContext } from '../theme';
 import { DefaultProps, VariantPropsType } from '../types';
 
 export function withDefaultProps<
@@ -7,16 +8,15 @@ export function withDefaultProps<
   Defaults extends DefaultProps<Props> = {}
 >(
   WrappedComponent: React.ComponentClass<Props & Defaults>,
-  componentName: keyof NonNullable<ThemeType['components']>,
+  componentName: keyof NonNullable<ThemeComponents>,
   defaultProps: Defaults
 ) {
-  type Variant = Props & VariantPropsType;
-  return class extends React.PureComponent<Variant> {
+  return class extends React.PureComponent<Props & VariantPropsType> {
     static contextType = ThemeContext;
     context!: React.ContextType<typeof ThemeContext>;
 
     render() {
-      const theme = this.context.theme;
+      const components = this.context.theme.components;
 
       if (!componentName) {
         return {
@@ -27,11 +27,10 @@ export function withDefaultProps<
 
       let propsFromTheme = {
         // @ts-ignore
-        ...(theme.components?.[componentName] ?? {}),
+        ...(components?.[componentName] ?? {}),
         ...(this.props.variant &&
           //@ts-ignore
-          (theme.components?.[componentName]?.variants?.[this.props.variant] ??
-            {})),
+          (components?.[componentName]?.variants?.[this.props.variant] ?? {})),
       };
 
       delete propsFromTheme.variants;

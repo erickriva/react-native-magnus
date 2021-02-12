@@ -9,7 +9,13 @@ import {
   Toggle,
   useTheme,
 } from 'react-native-magnus';
-import { lightTheme, darkTheme, saveThemeName } from '../themes';
+import {
+  lightTheme,
+  darkTheme,
+  saveThemeName,
+  lightComponents,
+  darkComponents,
+} from '../themes';
 
 const ExampleHeader: React.FC<{ name: string }> = ({ name }) => {
   const navigation = useNavigation();
@@ -35,12 +41,18 @@ const ExampleHeader: React.FC<{ name: string }> = ({ name }) => {
           <Toggle
             h={25}
             w={40}
-            on={theme.name === 'dark'}
+            on={theme.props.name === 'dark'}
             onPress={() => {
               saveThemeName(
-                theme.name === 'dark' ? lightTheme.name! : darkTheme.name!
+                theme.props.name === 'dark' ? lightTheme.name! : darkTheme.name!
               );
-              setTheme(theme.name === 'dark' ? lightTheme : darkTheme);
+              setTheme({
+                props: theme.props.name === 'dark' ? lightTheme : darkTheme,
+                components:
+                  theme.props.name === 'dark'
+                    ? lightComponents
+                    : darkComponents,
+              });
             }}
           />
         </Div>

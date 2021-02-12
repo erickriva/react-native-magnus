@@ -72,7 +72,7 @@ const Badge: React.FunctionComponent<BadgeProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props);
+  const computedStyle = getStyle(theme.props, props);
 
   return (
     <RNView style={computedStyle.container}>

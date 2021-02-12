@@ -28,7 +28,7 @@ const StatusBar: StatusBarComponent<RNStatusBarProps & VariantPropsType> = (
       {...props}
       backgroundColor={
         typeof backgroundColor === 'string'
-          ? getThemeColor(theme.colors, backgroundColor)
+          ? getThemeColor(theme.props.colors, backgroundColor)
           : backgroundColor
       }
     />
