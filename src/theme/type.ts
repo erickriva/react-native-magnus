@@ -92,9 +92,9 @@ export interface ThemeComponents {
 }
 
 // to avoid compatibility issues
-export type ThemeType = MagnusTheme;
+export type ThemeType = MagnusThemeType;
 
-export interface MagnusTheme {
+export interface MagnusThemeType {
   fontFamily?: {
     normal?: string;
     bold?: string;

@@ -14,7 +14,7 @@ export interface ThemeProviderProps {
   theme?: ThemeWithComponents;
 }
 
-export const ThemeProvider: React.FunctionComponent<ThemeProviderProps> = (
+export const MagnusThemeProvider: React.FunctionComponent<ThemeProviderProps> = (
   props
 ) => {
   const { theme, children } = props;
