@@ -7,3 +7,5 @@ export const mergeThemeComponents = (
 ): ThemeComponents => deepmerge<ThemeComponents>(components1, components2);
 
 export const makeTheme = <T extends ThemeType = ThemeType>(theme: T) => theme;
+
+export const makeThemeComponents = (components: ThemeComponents) => components;

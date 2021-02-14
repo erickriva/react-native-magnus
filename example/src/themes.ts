@@ -1,7 +1,7 @@
 import {
   makeTheme,
+  makeThemeComponents,
   mergeThemeComponents,
-  ThemeComponents,
 } from 'react-native-magnus';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -23,7 +23,7 @@ const commonColors = {
   dribbble: '#ea4c88',
 };
 
-const commonComponents: ThemeComponents = {
+const commonComponents = makeThemeComponents({
   Text: {
     fontSize: 'lg',
     color: 'textDark',
@@ -127,7 +127,7 @@ const commonComponents: ThemeComponents = {
   SelectOption: {
     bg: 'card',
   },
-};
+});
 
 export const lightComponents = mergeThemeComponents(commonComponents, {
   Statusbar: {
