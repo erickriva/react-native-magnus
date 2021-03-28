@@ -99,9 +99,9 @@ const Button: React.FunctionComponent<ButtonProps> = (incomingProps) => {
   } = props;
 
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
-  const underlayColor = getUnderlayColor(theme.props, props);
-  const calculatedRippleColor = getRippleColor(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
+  const underlayColor = getUnderlayColor(theme.values, props);
+  const calculatedRippleColor = getRippleColor(theme.values, props);
 
   /**
    * renders children based on type
@@ -142,8 +142,8 @@ const Button: React.FunctionComponent<ButtonProps> = (incomingProps) => {
         <RNView style={computedStyle.container}>
           <RNView style={computedStyle.loadingContainer}>
             <RNActivityIndicator
-              size={getThemeProperty(theme.props.fontSize, loaderSize)}
-              color={getThemeColor(theme.props.colors, loaderColor)}
+              size={getThemeProperty(theme.values.fontSize, loaderSize)}
+              color={getThemeColor(theme.values.colors, loaderColor)}
             />
           </RNView>
         </RNView>

@@ -1,10 +1,10 @@
+import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import {
   BackgroundPropsType,
   DimensionPropsType,
   FlexPropsType,
   OpacityPropsType,
-  PrefixSuffixPropsType,
   TextPropsType,
   BorderPropsType,
   SpacingPropsType,
@@ -14,7 +14,7 @@ import {
 } from '../../types';
 
 export interface SnackbarRef {
-  show: (message: string | JSX.Element, config?: SnackbarProps) => void;
+  show: (message: string | JSX.Element, config?: SnackbarProps) => string;
   hide: (id: string) => void;
   update: (
     id: string,
@@ -28,7 +28,6 @@ export interface SnackbarProps
     SpacingPropsType,
     ShadowPropsType,
     RoundedPropsType,
-    PrefixSuffixPropsType,
     DimensionPropsType,
     OpacityPropsType,
     FlexPropsType,
@@ -37,16 +36,20 @@ export interface SnackbarProps
     VariantPropsType {
   id?: string;
   duration?: number;
-  onClose?: () => void;
+  onClose?: (id: string) => void;
   style?: StyleProp<ViewStyle>;
   useNativeDriver?: boolean;
+  prefix?: (id: string) => React.ReactNode;
+  suffix?: (id: string) => React.ReactNode;
 }
 
 export interface SnackbarContainerProps {
-  placement: 'top' | 'bottom';
+  placement?: 'top' | 'bottom';
   offset?: number;
 }
 
-export interface SnackbarState {
-  toasts: Array<SnackbarProps & { message: string | JSX.Element }>;
+export interface ToastProps extends SnackbarProps {
+  message: string | JSX.Element;
 }
+
+export type SnackbarType = SnackbarProps & SnackbarContainerProps;

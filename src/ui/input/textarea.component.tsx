@@ -39,7 +39,7 @@ const Textarea: React.FunctionComponent<TextareaProps> = (incomingProps) => {
   } = props;
   const { theme } = useTheme();
   const [isFocussed, setIsFocussed] = useState(false);
-  const computedStyle = getStyle(theme.props, props, { isFocussed });
+  const computedStyle = getStyle(theme.values, props, { isFocussed });
 
   /**
    * on focus input

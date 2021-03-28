@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeComponents } from 'src/theme/type';
+import { ThemeComponents } from '../theme/type';
 import { ThemeContext } from '../theme';
 import { DefaultProps, VariantPropsType } from '../types';
 

@@ -39,7 +39,7 @@ const App = () => {
     return (
       <ThemeProvider
         theme={{
-          props: themeName === 'dark' ? darkTheme : lightTheme,
+          values: themeName === 'dark' ? darkTheme : lightTheme,
           components: themeName === 'dark' ? darkComponents : lightComponents,
         }}
       >

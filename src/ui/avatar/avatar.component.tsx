@@ -72,7 +72,7 @@ const Avatar: CompoundedAvatar<AvatarProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   /**
    * render the content based on the props passed

@@ -75,7 +75,7 @@ const Animated: React.FunctionComponent<AnimatedProps> = (incomingProps) => {
   } = props;
 
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   if (bgImg) {
     return (

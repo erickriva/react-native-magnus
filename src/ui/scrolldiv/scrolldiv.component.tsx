@@ -65,7 +65,7 @@ const ScrollDiv: React.FunctionComponent<ScrollDivProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   if (bgImg) {
     return (

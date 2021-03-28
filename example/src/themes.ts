@@ -127,6 +127,29 @@ const commonComponents = makeThemeComponents({
   SelectOption: {
     bg: 'card',
   },
+  Snackbar: {
+    bg: 'card',
+    color: 'textDark',
+
+    variants: {
+      danger: {
+        bg: 'red700',
+        color: 'white',
+      },
+      success: {
+        bg: 'green700',
+        color: 'white',
+      },
+      warning: {
+        bg: 'yellow700',
+        color: 'white',
+      },
+      info: {
+        bg: 'blue700',
+        color: 'white',
+      },
+    },
+  },
 });
 
 export const lightComponents = mergeThemeComponents(commonComponents, {

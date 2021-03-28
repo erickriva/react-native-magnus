@@ -12,7 +12,7 @@ export interface ThemeContextType {
 export const ThemeContext: React.Context<ThemeContextType> = React.createContext(
   {
     theme: {
-      props: defaultTheme as ThemeType,
+      values: defaultTheme as ThemeType,
       components: {},
     },
     setTheme: (_theme: ThemeWithComponents) => {},

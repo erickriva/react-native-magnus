@@ -25,6 +25,7 @@ export const createSpacingStyles = (
     px: 'paddingHorizontal',
     py: 'paddingVertical',
     ps: 'paddingStart',
+    pe: 'paddingEnd',
     m: 'margin',
     mt: 'marginTop',
     mr: 'marginRight',
@@ -33,6 +34,7 @@ export const createSpacingStyles = (
     mx: 'marginHorizontal',
     my: 'marginVertical',
     ms: 'marginStart',
+    me: 'marginEnd',
   };
 
   const computedStyle: any = {};
@@ -160,12 +162,20 @@ export const createBorderRadiusStyles = (
     rounded: 'borderRadius',
     roundedTopLeft: 'borderTopLeftRadius',
     roundedTopRight: 'borderTopRightRadius',
+    roundedTopStart: 'borderTopStartRadius',
+    roundedTopEnd: 'borderTopEndRadius',
     roundedBottomLeft: 'borderBottomLeftRadius',
     roundedBottomRight: 'borderBottomRightRadius',
+    roundedBottomStart: 'borderBottomStartRadius',
+    roundedBottomEnd: 'borderBottomEndRadius',
+
     roundedTop: ['borderTopLeftRadius', 'borderTopRightRadius'],
+    roundedBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
+
     roundedLeft: ['borderTopLeftRadius', 'borderBottomLeftRadius'],
     roundedRight: ['borderTopRightRadius', 'borderBottomRightRadius'],
-    roundedBottom: ['borderBottomLeftRadius', 'borderBottomRightRadius'],
+    roundedStart: ['borderTopStartRadius', 'borderBottomStartRadius'],
+    roundedEnd: ['borderTopEndRadius', 'borderBottomEndRadius'],
   };
 
   const computedStyle: any = {};
@@ -222,12 +232,12 @@ export const createBorderWidthStyles = (props: any) => {
 
   propKeys = {
     borderWidth: 'borderWidth',
-    borderStartWidth: 'borderStartWidth',
-    borderEndWidth: 'borderEndWidth',
     borderTopWidth: 'borderTopWidth',
     borderLeftWidth: 'borderLeftWidth',
     borderRightWidth: 'borderRightWidth',
     borderBottomWidth: 'borderBottomWidth',
+    borderStartWidth: 'borderStartWidth',
+    borderEndWidth: 'borderEndWidth',
   };
 
   const computedStyle: any = {};
@@ -260,6 +270,8 @@ export const createBorderColorStyles = (
     borderRightColor: 'borderRightColor',
     borderLeftColor: 'borderLeftColor',
     borderBottomColor: 'borderBottomColor',
+    borderStartColor: 'borderStartColor',
+    borderEndColor: 'borderEndColor',
   };
 
   const computedStyle: any = {};
@@ -314,6 +326,8 @@ export const createPositionStyle = (props: any) => {
     left: 'left',
     right: 'right',
     bottom: 'bottom',
+    start: 'start',
+    end: 'end',
   };
 
   const computedStyle: any = {};

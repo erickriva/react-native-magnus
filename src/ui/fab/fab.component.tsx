@@ -327,7 +327,7 @@ class FabBase extends React.Component<
     return (
       <ThemeContext.Consumer>
         {({ theme }) => {
-          const computedStyle = getStyle(theme.props, this.props);
+          const computedStyle = getStyle(theme.values, this.props);
 
           return (
             <Animated.View
@@ -336,7 +336,7 @@ class FabBase extends React.Component<
             >
               {active &&
                 showBackground &&
-                this.renderTappableBackground(theme.props, computedStyle)}
+                this.renderTappableBackground(theme.values, computedStyle)}
               {this.renderActions(computedStyle)}
               {this.renderMainButton(computedStyle)}
             </Animated.View>

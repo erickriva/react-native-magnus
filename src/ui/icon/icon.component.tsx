@@ -67,15 +67,15 @@ const Icon: React.FunctionComponent<IconProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   const Icon = getIconSet(fontFamily);
 
   return (
     <RNView style={computedStyle.container} {...rest}>
       <Icon
-        color={getThemeColor(theme.props.colors, color)}
-        size={getThemeProperty(theme.props.fontSize, fontSize)}
+        color={getThemeColor(theme.values.colors, color)}
+        size={getThemeProperty(theme.values.fontSize, fontSize)}
         name={name}
         style={computedStyle.icon}
       />

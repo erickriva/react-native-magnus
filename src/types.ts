@@ -5,11 +5,14 @@ export type ThemeProps<T> = {
   [name: string]: T;
 };
 
-export type VariantType<T> = Partial<T> & {
-  variants?: {
-    [name: string]: Partial<T>;
-  };
-};
+export type VariantType<T extends object> = Omit<
+  Partial<T> & {
+    variants?: {
+      [name: string]: Omit<Partial<T>, 'variant'>;
+    };
+  },
+  'variant'
+>;
 
 export type DefaultProps<Props extends object> = {
   [K in keyof Props]?: Props[K];
@@ -23,6 +26,8 @@ export const borderProps = [
   'borderRightColor',
   'borderBottomColor',
   'borderLeftColor',
+  'borderStartColor',
+  'borderEndColor',
   'borderWidth',
   'borderTopWidth',
   'borderRightWidth',
@@ -38,6 +43,8 @@ export interface BorderPropsType {
   borderRightColor?: LiteralUnion<keyof FinalTheme['colors']>;
   borderBottomColor?: LiteralUnion<keyof FinalTheme['colors']>;
   borderLeftColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderStartColor?: LiteralUnion<keyof FinalTheme['colors']>;
+  borderEndColor?: LiteralUnion<keyof FinalTheme['colors']>;
   borderWidth?: number;
   borderTopWidth?: number;
   borderRightWidth?: number;
@@ -57,6 +64,7 @@ export const spacingProps = [
   'mx',
   'my',
   'ms',
+  'me',
   'p',
   'pt',
   'pr',
@@ -65,6 +73,7 @@ export const spacingProps = [
   'px',
   'py',
   'ps',
+  'pe',
 ] as const;
 export interface SpacingPropsType {
   m?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
@@ -75,6 +84,7 @@ export interface SpacingPropsType {
   mx?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   my?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   ms?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  me?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   p?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   pt?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   pr?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
@@ -83,17 +93,24 @@ export interface SpacingPropsType {
   px?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   py?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
   ps?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
+  pe?: LiteralUnion<keyof FinalTheme['spacing'], string | number>;
 }
 
 export const roundedProps = [
   'rounded',
   'roundedTopLeft',
   'roundedTopRight',
+  'roundedTopStart',
+  'roundedTopEnd',
   'roundedBottomLeft',
   'roundedBottomRight',
+  'roundedBottomStart',
+  'roundedBottomEnd',
   'roundedTop',
   'roundedLeft',
   'roundedRight',
+  'roundedStart',
+  'roundedEnd',
   'roundedBottom',
 ] as const;
 export interface RoundedPropsType {
@@ -106,6 +123,14 @@ export interface RoundedPropsType {
     keyof FinalTheme['borderRadius'],
     string | number
   >;
+  roundedTopStart?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedTopEnd?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
   roundedBottomLeft?: LiteralUnion<
     keyof FinalTheme['borderRadius'],
     string | number
@@ -114,12 +139,26 @@ export interface RoundedPropsType {
     keyof FinalTheme['borderRadius'],
     string | number
   >;
-  roundedTop?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
+  roundedBottomStart?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedBottomEnd?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
   roundedLeft?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
   roundedRight?: LiteralUnion<
     keyof FinalTheme['borderRadius'],
     string | number
   >;
+  roundedStart?: LiteralUnion<
+    keyof FinalTheme['borderRadius'],
+    string | number
+  >;
+  roundedEnd?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
+
+  roundedTop?: LiteralUnion<keyof FinalTheme['borderRadius'], string | number>;
   roundedBottom?: LiteralUnion<
     keyof FinalTheme['borderRadius'],
     string | number
@@ -186,6 +225,8 @@ export const positionProps = [
   'right',
   'bottom',
   'left',
+  'start',
+  'end',
 ] as const;
 export interface PositionPropsType {
   position?: 'absolute' | 'relative';
@@ -193,6 +234,8 @@ export interface PositionPropsType {
   right?: number;
   bottom?: number;
   left?: number;
+  start?: number;
+  end?: number;
 }
 
 export const backgroundProps = ['bg', 'bgImg', 'bgMode'] as const;

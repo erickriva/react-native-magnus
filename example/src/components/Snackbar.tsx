@@ -9,6 +9,8 @@ import ExampleSection from '../utils/ExampleSection';
 const SnackbarComponent: React.FC = () => {
   const snackbarRef = React.useRef<SnackbarRef>(null);
 
+  const variants = ['danger', 'success', 'warning', 'info'];
+
   return (
     <ExamplePage>
       <ExampleHeader name="snackbar" />
@@ -19,11 +21,20 @@ const SnackbarComponent: React.FC = () => {
             block
             p="lg"
             onPress={() => {
-              snackbarRef.current.show('Hello World', {
+              snackbarRef.current?.show('Hello World', {
+                variant: variants[Math.floor(Math.random() * variants.length)],
                 duration: 5000,
-                suffix: (
-                  <Button bg="green500" fontSize="sm" p="sm" px="md">
-                    Yay!
+                suffix: (id) => (
+                  <Button
+                    bg="rgba(0,0,0,0.1)"
+                    fontSize="sm"
+                    p="sm"
+                    px="md"
+                    textTransform="uppercase"
+                    fontWeight="bold"
+                    onPress={() => snackbarRef.current?.hide(id)}
+                  >
+                    Close
                   </Button>
                 ),
               });
@@ -38,7 +49,6 @@ const SnackbarComponent: React.FC = () => {
         px="xl"
         py="lg"
         ref={snackbarRef}
-        color="white"
         fontSize="lg"
         duration={2000}
       />

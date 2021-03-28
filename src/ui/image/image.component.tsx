@@ -59,7 +59,7 @@ const Image: React.FunctionComponent<ImageProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   return (
     <RNImage style={computedStyle.image} {...rest}>

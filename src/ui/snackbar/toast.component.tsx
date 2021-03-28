@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Animated, SafeAreaView, View as RNView } from 'react-native';
 
 import { getStyle } from './snackbar.style';
@@ -61,7 +61,10 @@ const Toast: React.FunctionComponent<SnackbarProps> = (incomingProps) => {
     borderRightWidth,
     borderBottomWidth,
     borderTopWidth,
+    borderStartColor,
+    borderStartWidth,
     borderEndWidth,
+    borderEndColor,
     flexDir,
     justifyContent,
     alignItems,
@@ -73,8 +76,8 @@ const Toast: React.FunctionComponent<SnackbarProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme, props);
-  const [opacity] = useState(new Animated.Value(0.0));
+  const computedStyle = getStyle(theme.values, props);
+  const opacity = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.timing(opacity, {
@@ -85,7 +88,7 @@ const Toast: React.FunctionComponent<SnackbarProps> = (incomingProps) => {
 
     let closeTimeout: number = 0;
 
-    if (duration !== 0 && typeof duration === 'number') {
+    if (duration !== 0) {
       closeTimeout = setTimeout(() => {
         Animated.timing(opacity, {
           toValue: 0,
@@ -93,16 +96,14 @@ const Toast: React.FunctionComponent<SnackbarProps> = (incomingProps) => {
           duration: 250,
         }).start(({ finished }) => {
           if (finished) {
-            onClose();
+            onClose(props.id);
           }
         });
       }, duration);
     }
 
-    return () => {
-      closeTimeout && clearTimeout(closeTimeout);
-    };
-  }, [duration, onClose, opacity]);
+    return () => clearTimeout(closeTimeout);
+  }, [duration, onClose, opacity, props.id]);
 
   /**
    * renders children based on type
@@ -139,9 +140,13 @@ const Toast: React.FunctionComponent<SnackbarProps> = (incomingProps) => {
         {...rest}
       >
         <RNView style={computedStyle.container}>
-          {prefix && <RNView style={computedStyle.prefix}>{prefix}</RNView>}
+          {prefix && (
+            <RNView style={computedStyle.prefix}>{prefix(props.id)}</RNView>
+          )}
           {renderChildren()}
-          {suffix && <RNView style={computedStyle.suffix}>{suffix}</RNView>}
+          {suffix && (
+            <RNView style={computedStyle.suffix}>{suffix(props.id)}</RNView>
+          )}
         </RNView>
       </Animated.View>
     </SafeAreaView>

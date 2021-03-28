@@ -126,6 +126,69 @@ const DivComponent: React.FC = () => {
             <Div h={40} w={40} mr="sm" borderColor="blue500" borderWidth={1} />
             <Div h={40} w={40} mr="sm" borderColor="gray500" borderWidth={1} />
           </Div>
+
+          <Div flexDir="row" mt="lg">
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="green500"
+              borderLeftWidth={1}
+            >
+              <Text>L</Text>
+            </Div>
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="yellow500"
+              borderRightWidth={1}
+            >
+              <Text>R</Text>
+            </Div>
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="red500"
+              borderTopWidth={1}
+            >
+              <Text>T</Text>
+            </Div>
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="blue500"
+              borderBottomWidth={1}
+            >
+              <Text>B</Text>
+            </Div>
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="gray500"
+              borderStartWidth={1}
+            >
+              <Text>S</Text>
+            </Div>
+            <Div
+              h={40}
+              w={40}
+              mr="sm"
+              bg="card"
+              borderColor="green500"
+              borderEndWidth={1}
+            >
+              <Text>E</Text>
+            </Div>
+          </Div>
         </ExampleSection>
 
         <ExampleSection name="radius">

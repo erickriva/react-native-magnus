@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   KeyboardAvoidingView,
@@ -8,90 +8,88 @@ import {
 
 import { Toast } from './toast.component';
 import {
-  SnackbarState,
   SnackbarProps,
-  SnackbarContainerProps,
+  SnackbarRef,
+  SnackbarType,
+  ToastProps,
 } from './snackbar.type';
-class Snackbar extends Component<
-  SnackbarProps & SnackbarContainerProps,
-  SnackbarState
-> {
-  constructor(props: SnackbarProps & SnackbarContainerProps) {
-    super(props);
+import { useDefaultProps } from '../../utilities/useDefaultProps';
 
-    this.state = {
-      toasts: [],
-    };
-  }
+const Snackbar = React.forwardRef<SnackbarRef, SnackbarType>(
+  (incomingProps, ref) => {
+    const props = useDefaultProps(null, incomingProps, {
+      placement: 'bottom',
+      offset: 0,
+    });
 
-  static defaultProps = {
-    placement: 'bottom',
-    offset: 0,
-  };
+    const { placement, offset } = props;
+    const [toasts, setToasts] = React.useState<ToastProps[]>([]);
 
-  /**
-   * adds new toast in the snackbar
-   *
-   * @param message
-   * @param config
-   */
-  show = (message: string | JSX.Element, config?: SnackbarProps) => {
-    let id = config?.id || Math.random().toString();
-    const onClose = () => this.hide(id);
+    React.useEffect(() => {
+      console.log(JSON.stringify(toasts.map((t) => t.id).join(', ')));
+    }, [toasts]);
 
-    requestAnimationFrame(() => {
-      this.setState({
-        toasts: this.state.toasts.filter((t) => t.id !== id),
-      });
-      this.setState({
-        toasts: [
+    /**
+     * adds new toast in the snackbar
+     *
+     * @param message
+     * @param config
+     */
+    const show = (message: string | JSX.Element, config?: SnackbarProps) => {
+      let id = config?.id ?? Math.random().toString();
+
+      requestAnimationFrame(() => {
+        setToasts([
           {
+            ...config,
             id,
             message,
-            onClose,
-            ...config,
+            onClose: (id: string) => hide(id),
           },
-          ...this.state.toasts,
-        ],
+          ...toasts.filter((t) => t.id !== id),
+        ]);
       });
-    });
 
-    return id;
-  };
+      return id;
+    };
 
-  /**
-   * updates a existing toast
-   *
-   * @param id
-   * @param message
-   * @param config
-   */
-  update = (
-    id: string,
-    message: string | JSX.Element,
-    config?: SnackbarProps
-  ) => {
-    this.setState({
-      toasts: this.state.toasts.map((toast) =>
-        toast.id === id ? { ...toast, message, ...config } : toast
-      ),
-    });
-  };
+    /**
+     * updates a existing toast
+     *
+     * @param id
+     * @param message
+     * @param config
+     */
+    const update = (
+      id: string,
+      message: string | JSX.Element,
+      config?: SnackbarProps
+    ) => {
+      setToasts(
+        toasts.map((toast) =>
+          toast.id === id ? { ...toast, message, ...config } : toast
+        )
+      );
+    };
 
-  /**
-   * removes a toast from the snackbar
-   *
-   * @param id
-   */
-  hide = (id: string) => {
-    this.setState({
-      toasts: this.state.toasts.filter((t) => t.id !== id),
-    });
-  };
+    /**
+     * removes a toast from the snackbar
+     *
+     * @param id
+     */
+    const hide = (id: string) => {
+      console.log(`hide ${id}`);
+      setToasts(toasts.filter((t) => t.id !== id));
+    };
 
-  render() {
-    const { toasts } = this.state;
-    const { placement, offset } = this.props;
+    /**
+     * exposing functions through ref
+     */
+    React.useImperativeHandle(ref, () => ({
+      hide,
+      show,
+      update,
+    }));
 
     let style: ViewStyle = {
       bottom: placement === 'bottom' ? offset : undefined,
@@ -110,7 +108,7 @@ class Snackbar extends Component<
           const { message, id, ...rest } = toast;
 
           return (
-            <Toast key={id} {...this.props} {...rest}>
+            <Toast key={id} {...props} id={id} {...rest}>
               {message}
             </Toast>
           );
@@ -118,7 +116,7 @@ class Snackbar extends Component<
       </KeyboardAvoidingView>
     );
   }
-}
+);
 
 const styles = StyleSheet.create({
   container: {

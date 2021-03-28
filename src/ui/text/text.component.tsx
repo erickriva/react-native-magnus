@@ -54,7 +54,7 @@ const Text: React.FunctionComponent<TextProps> = (incomingProps) => {
     ...rest
   } = props;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props);
+  const computedStyle = getStyle(theme.values, props);
 
   return (
     <RNText style={computedStyle.text} {...rest}>

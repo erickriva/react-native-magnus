@@ -108,7 +108,7 @@ const Radio: CompoundedRadio<RadioProps> = (incomingProps) => {
   const { theme } = useTheme();
   const [checked, setChecked] = useState(props.checked ?? defaultChecked);
   const [focussed, setFocussed] = useState(false);
-  const computedStyle = getStyle(theme.props, props as RadioProps, {
+  const computedStyle = getStyle(theme.values, props as RadioProps, {
     focussed,
   });
 
@@ -164,7 +164,7 @@ const Radio: CompoundedRadio<RadioProps> = (incomingProps) => {
     disabled,
     activeColor,
     inactiveColor,
-    theme.props
+    theme.values
   );
 
   /**
@@ -175,8 +175,8 @@ const Radio: CompoundedRadio<RadioProps> = (incomingProps) => {
     if (loading) {
       return (
         <ActivityIndicator
-          size={getThemeProperty(theme.props.fontSize, fontSize)}
-          color={getThemeColor(theme.props.colors, loaderColor)}
+          size={getThemeProperty(theme.values.fontSize, fontSize)}
+          color={getThemeColor(theme.values.colors, loaderColor)}
           style={{ zIndex: 2, position: 'relative' }}
         />
       );

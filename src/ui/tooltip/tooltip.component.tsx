@@ -92,7 +92,7 @@ const Tooltip = React.forwardRef<
   const animationStarted = visible === STATES.ANIMATING;
   const modalVisible = visible === STATES.SHOWN || animationStarted;
   const { theme } = useTheme();
-  const computedStyle = getStyle(theme.props, props, {
+  const computedStyle = getStyle(theme.values, props, {
     ...state,
     invert,
   });
@@ -167,12 +167,8 @@ const Tooltip = React.forwardRef<
    * exposing functions to parent
    */
   useImperativeHandle(ref, () => ({
-    show() {
-      show();
-    },
-    hide() {
-      hide();
-    },
+    show,
+    hide,
   }));
 
   return (

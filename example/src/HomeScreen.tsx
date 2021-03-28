@@ -52,18 +52,18 @@ const HomeScreen = () => {
                   <Toggle
                     h={25}
                     w={40}
-                    on={theme.props.name === 'dark'}
+                    on={theme.values.name === 'dark'}
                     onPress={() => {
                       saveThemeName(
-                        theme.props.name === 'dark'
+                        theme.values.name === 'dark'
                           ? lightTheme.name!
                           : darkTheme.name!
                       );
                       setTheme({
-                        props:
-                          theme.props.name === 'dark' ? lightTheme : darkTheme,
+                        values:
+                          theme.values.name === 'dark' ? lightTheme : darkTheme,
                         components:
-                          theme.props.name === 'dark'
+                          theme.values.name === 'dark'
                             ? lightComponents
                             : darkComponents,
                       });

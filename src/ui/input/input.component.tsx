@@ -89,15 +89,15 @@ const Input = React.forwardRef<RNTextInput, InputProps>(
     } = props;
     const { theme } = useTheme();
     const [isFocussed, setIsFocussed] = useState(false);
-    const computedStyle = getStyle(theme.props, props, { isFocussed });
+    const computedStyle = getStyle(theme.values, props, { isFocussed });
     const placeholderColor = placeholderTextColor
       ? typeof placeholderTextColor === 'string'
-        ? color(getThemeColor(theme.props.colors, placeholderTextColor))
+        ? color(getThemeColor(theme.values.colors, placeholderTextColor))
             .alpha(0.4)
             .rgb()
             .string()
         : placeholderTextColor
-      : color(getThemeColor(theme.props.colors, colorProp))
+      : color(getThemeColor(theme.values.colors, colorProp))
           .alpha(0.4)
           .rgb()
           .string();
@@ -137,7 +137,7 @@ const Input = React.forwardRef<RNTextInput, InputProps>(
           onBlur={onBlurInput}
           selectionColor={
             typeof props.selectionColor === 'string'
-              ? getThemeColor(theme.props.colors, props.selectionColor)
+              ? getThemeColor(theme.values.colors, props.selectionColor)
               : props.selectionColor
           }
           {...rest}
@@ -150,8 +150,8 @@ const Input = React.forwardRef<RNTextInput, InputProps>(
         {loading && (
           <RNView style={computedStyle.suffix}>
             <RNActivityIndicator
-              size={getThemeProperty(theme.props.fontSize, loaderSize)}
-              color={getThemeColor(theme.props.colors, loaderColor)}
+              size={getThemeProperty(theme.values.fontSize, loaderSize)}
+              color={getThemeColor(theme.values.colors, loaderColor)}
             />
           </RNView>
         )}

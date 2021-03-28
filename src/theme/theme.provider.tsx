@@ -6,7 +6,7 @@ import { defaultTheme } from '../style';
 import deepmerge from 'deepmerge';
 
 export type ThemeWithComponents<Theme extends ThemeType = ThemeType> = {
-  props?: Theme;
+  values?: Theme;
   components?: ThemeComponents;
 };
 
@@ -19,7 +19,7 @@ export const MagnusThemeProvider: React.FunctionComponent<ThemeProviderProps> = 
 ) => {
   const { theme, children } = props;
 
-  const themeProp = theme?.props ?? {};
+  const themeProp = theme?.values ?? {};
   const componentsProp = theme?.components ?? {};
 
   const [themeState, setThemeState] = React.useState<ThemeType>(
@@ -29,8 +29,12 @@ export const MagnusThemeProvider: React.FunctionComponent<ThemeProviderProps> = 
     componentsProp
   );
 
+  React.useEffect(() => {
+    setTheme(theme ?? {});
+  }, [theme]);
+
   const setTheme = ({
-    props: themeProps = {},
+    values: themeProps = {},
     components = {},
   }: ThemeWithComponents) => {
     const mergedTheme = deepmerge<ThemeType>(defaultTheme, themeProps);
@@ -45,7 +49,7 @@ export const MagnusThemeProvider: React.FunctionComponent<ThemeProviderProps> = 
     <ThemeContext.Provider
       value={{
         theme: {
-          props: themeState,
+          values: themeState,
           components: componentsState,
         },
         setTheme,

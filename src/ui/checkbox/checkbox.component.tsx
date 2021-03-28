@@ -107,7 +107,7 @@ const Checkbox: CompundedCheckbox<CheckboxProps> = (incomingProps) => {
     ('checked' in props ? checkedProp : defaultChecked) ?? false
   );
   const [focussed, setFocussed] = useState(false);
-  const computedStyle = getStyle(theme.props, props, { focussed });
+  const computedStyle = getStyle(theme.values, props, { focussed });
 
   useEffect(() => {
     if ('checked' in props) {
@@ -180,7 +180,7 @@ const Checkbox: CompundedCheckbox<CheckboxProps> = (incomingProps) => {
     );
   };
 
-  const icon = getIcon(theme.props, props, checked);
+  const icon = getIcon(theme.values, props, checked);
 
   return (
     <RNButton
